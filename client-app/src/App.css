@@ -1,0 +1,111 @@
+* {
+  margin:0;
+  padding:0;
+}
+
+.refresh {
+  height:70px;
+  width:70px;
+}
+
+.btk {
+  height: 95px;
+  width: 95px;
+}
+
+/*
+.img_:hover{
+  transform:scale(1.0);
+  z-index:5;
+  background-color:grey;
+  opacity:20%;
+}
+*/
+
+.img_:hover, .img:active{
+  background-color: orange;
+  opacity:20%;
+  animation-duration: 1s;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.area{
+  background-size:cover;
+}
+
+.Input_Username .Input_Password {
+  margin-left: 0px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #eff5f7;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*{
+box-sizing:border-box;
+margin: 0;
+padding:0;
+}
+#text1{
+  position: relative;
+  text-align: center;
+  top:200px;
+  font-size: 3rem;
+  color:white;
+}
+#text2{
+  position: relative;
+  text-align: center;
+  top:15rem;
+  font-size: 1.5rem;
+  color:white;
+}
+#button1{
+  position: relative;
+  top:20rem;
+  size:24px;
+  height: 2em;
+  width:10em;
+  background-color:orange;
+}
+#text3{
+  position: relative;
+  text-align: center;
+  top:25rem;
+  font-size: 0.75rem;
+  color:white;
+}
