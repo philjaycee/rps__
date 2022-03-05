@@ -7,6 +7,8 @@ import Navbar_ from '../Navbar_2/Navbar'
 
 const weapons = ["rock", "paper", "scissor"];
 
+
+
 class RPS extends Component {
 
   constructor (props) {
@@ -32,7 +34,7 @@ class RPS extends Component {
       })
     }
 
-    hover =( ) => {
+    hover =() => {
       this.setState({
         hover : !this.state.hover
       }) 
@@ -47,8 +49,6 @@ class RPS extends Component {
 
 
     checkResult = (button_hover_) => {
-
-      
       var {playerOne, playerTwo,tie,playerwin,compwin} = this.state;
       switch(playerOne + playerTwo) {
         case 'scissorpaper':
@@ -150,7 +150,7 @@ class RPS extends Component {
       <div className="container">
         <div className = "row">
           <div className = "col-lg px-2">
-          <div class="d-flex flex-column">
+          <div className="d-flex flex-column">
 
           <div className = {hover_cls} >
                 <img className ="btk my-4" src= {rock} onClick={this.playerchangingRock} ></img>
@@ -165,7 +165,7 @@ class RPS extends Component {
           </div>
 
           <div className = "kolom-tengah col-sm-7 d-flex  flex-column py-5 align-self-center ">
-            <div class="d-flex  flex-column py-5 align-self-center ">
+            <div className="d-flex  flex-column py-5 align-self-center ">
               <h1>VS</h1>
             </div>
           </div>
@@ -177,21 +177,17 @@ class RPS extends Component {
           <img className ="btk my-4" src= {paper} onClick={this.playerchangingPaper} ></img>
            
           <img className ="btk my-4" src= {scissors} onClick={this.playerchangingScissors} ></img>
-          
           </div>
           </div>
           </div>
         </div>
       </div>
-
-
       <img className="refresh " src= {refresh} onClick={this.refresh} ></img>
       <div className ="container py-4 my-2">
       <h5> Rock Paper Scissors</h5>
       <div>
-          <h5>player pilih: {playerOne}</h5>
-          <h5>comp pilih: {playerTwo}</h5>
-          
+        <h5>player pilih: {playerOne}</h5>
+        <h5>comp pilih: {playerTwo}</h5>
         <h5> player menang: {playerwin}</h5>
         <h5> comp menang: {compwin}</h5>
         <h5> tie: {tie}</h5>
