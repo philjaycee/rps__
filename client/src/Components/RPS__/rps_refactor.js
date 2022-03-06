@@ -21,27 +21,66 @@ function playerchangingScissors() {
 }
 */
 
+/*
+else if ((countround%10 === 0) && (playerwin % 10 < compwin %10)) {
+            setRound(round+1)
+            setRoundWin(roundlose+1)
+
+           } else if ((countround%10 === 0) && (playerwin % 10 === compwin %10)) {
+            setRound(round+1)
+            setRoundWin(roundtie+1)
+
+        }
+
+
+// yang kedua
+
+ if((countround%10 === 0)||((playerwin % 10) > (compwin %10)) )  {
+                setRound(round+1)
+                setRoundWin(roundwin+1)
+            }else if ((countround%10 === 0) || ((playerwin % 10) < (compwin %10))) {
+                setRound(round+1)
+                setRoundLose(roundlose+1)
+    
+               } else if ((countround%10 === 0) || (playerwin % 10 === compwin %10)) {
+                setRound(round+1)
+                setRoundTie(roundtie+1)
+            }
+
+        
+
+
+*/
+
 
 
 function Refac_RPS()  {
-    const[playerOne, setPlayerOne] = useState();
-    const[playerTwo, setPlayerTwo] = useState();
+    const[playerOne, setPlayerOne] = useState('');
+    const[playerTwo, setPlayerTwo] = useState('');
     const[hover, setHover] = useState(true);
     const[hovercls, setHover_CLS] = useState();
-    const[playerwin, setPlayerwin] = useState(0);
-    const[compwin, setCompwin] = useState(0);
-    const[tie, setTie] = useState(0);
+    const[playerwin, setplayerwin] = useState(0);
+    const[compwin, setcompwin] = useState(0);
+    const[tie, settie] = useState(0);
+    const[round, setRound] = useState(0)
+    const[countround, setCountRound] = useState(0)
+    const[roundwin, setRoundWin] = useState(0)
+    const[roundlose, setRoundLose] = useState(0)
+    const[roundtie, setRoundTie] = useState(-1)
 
     function playerchangingRock() {
         setPlayerOne(weapons[0])
+        setCountRound(countround+1)
     }
 
     function playerchangingPaper() {
         setPlayerOne(weapons[1])
+        setCountRound(countround+1)
     }
 
     function playerchangingScissors() {
         setPlayerOne(weapons[2])
+        setCountRound(countround+1)
     }
 
     useEffect(() => {
@@ -51,44 +90,77 @@ function Refac_RPS()  {
         } 
         compchange()
     } 
-    , [playerOne] )
+    , [playerTwo] )
 
     useEffect(() => {
         const checkResult = () => {
+            
             switch(playerOne + playerTwo) {
                 case 'scissorpaper':
                 case 'rockscissor':
                 case 'paperrock':
-                  setPlayerwin(playerwin+1)
+                  setplayerwin(playerwin+1)
                   break
-                case 'paperscissors':
+                case 'paperscissor':
                 case 'scissorrock':
                 case 'rockpaper':
-                  setCompwin(compwin+1)
+                  setcompwin(compwin+1)
                   break
                 case 'rockrock':
                 case 'paperpaper':
                 case 'scissorscissor':
-                  setTie(tie+1)
+                  settie(tie+1)
                   break
                 }
         }
-
+        
         checkResult()
+        console.log(playerOne+playerTwo)
 
     }, [playerOne,playerTwo])
 
 
     useEffect(() => {
-
         
-       
+        const sumround = () => {
+            if((countround%10 === 0)&&((playerwin % 10) > (compwin %10)) )  {
+                setRound(round+1)
+                
+            }else if ((countround%10 === 0) && ((playerwin % 10) < (compwin %10))) {
+                setRound(round+1)
+                
+    
+               } 
 
-    }, [playerOne,playerTwo])
+        } 
+        
+        sumround()
+
+    }, [countround,playerwin,compwin])
+
+    useEffect(() => {
+        
+        const sumwinloseround = () => {
+            if((countround%10 === 0)&&((playerwin % 10) > (compwin %10)) )  {
+                
+                setRoundWin(roundwin+1)
+            }else if ((countround%10 === 0) && ((playerwin % 10) < (compwin %10))) {
+                
+                setRoundLose(roundlose+1)
+    
+               } 
+
+        } 
+        
+        sumwinloseround()
+
+    }, [countround,playerwin,compwin])
+    
 
 
 
 
+    
     return (
         <Fragment>
         <Navbar_ / >
@@ -118,17 +190,19 @@ function Refac_RPS()  {
 
                <img className="refresh " src= {refresh}  ></img>
                <div className ="container py-4 my-2">
-                    <h5> Rock Paper Scissors</h5>
                     <div>
                         <h5>player pilih: {playerOne}</h5>
                         <h5>comp pilih: {playerTwo}</h5>
                         <h5> player menang: {playerwin}</h5>
                         <h5> comp menang: {compwin}</h5>
                         <h5> tie: {tie}</h5>
+                        <h5> countronde: {countround}</h5>
+                        <h5> ronde: {round}</h5>
+                        <h5> menangronde: {roundwin}</h5>
+                        <h5> kalahronde: {roundlose}</h5>
+                        <h5> tieronde: {roundtie}</h5>
                     </div>
                     </div>
-
-
               </div>
             </div>
             
