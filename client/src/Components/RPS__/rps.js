@@ -169,6 +169,7 @@ class RPS extends Component {
               <h1>VS</h1>
             </div>
           </div>
+          
           <div className = "col-sm">
           <div class="d-flex flex-column">
 
