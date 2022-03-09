@@ -66,7 +66,12 @@ function Refac_RPS()  {
     const[countround, setCountRound] = useState(0)
     const[roundwin, setRoundWin] = useState(0)
     const[roundlose, setRoundLose] = useState(0)
-    const[roundtie, setRoundTie] = useState(-1)
+    const[roundtie, setRoundTie] = useState(0)
+    const [menang, setMenang] = useState()
+    
+
+
+    const scorevalidasi = roundwin
 
     function playerchangingRock() {
         setPlayerOne(weapons[0])
@@ -81,6 +86,14 @@ function Refac_RPS()  {
     function playerchangingScissors() {
         setPlayerOne(weapons[2])
         setCountRound(countround+1)
+    }
+
+    function bawahsepuluh() {
+        if (countround < 10) {
+            return true
+        } else {
+            return false
+        }
     }
 
     useEffect(() => {
@@ -123,32 +136,33 @@ function Refac_RPS()  {
     useEffect(() => {
         
         const sumround = () => {
-            if((countround%10 === 0)&&((playerwin % 10) > (compwin %10)) )  {
-                setRound(round+1)
-                
-            }else if ((countround%10 === 0) && ((playerwin % 10) < (compwin %10))) {
-                setRound(round+1)
-                
-    
-               } 
-
+            if(countround%10 === 0 && countround >0){
+                    setplayerwin(0)
+                    setcompwin(0)
+                    settie(0)
+                    setRound(round+1)
+            }
         } 
         
         sumround()
 
-    }, [countround,playerwin,compwin])
+    }, [countround])
 
     useEffect(() => {
         
         const sumwinloseround = () => {
-            if((countround%10 === 0)&&((playerwin % 10) > (compwin %10)) )  {
-                
+            if((countround%10 === 0 && 0<countround<=10 )&&((playerwin  ) > (compwin )) )  {
+                setMenang(true)
                 setRoundWin(roundwin+1)
-            }else if ((countround%10 === 0) && ((playerwin % 10) < (compwin %10))) {
+            }
+            
+            else if ((countround%10 === 0 && countround >0) && ((playerwin ) < (compwin ))) {
                 
                 setRoundLose(roundlose+1)
     
-               } 
+            }else{
+                setRoundTie(tie+1)
+            }
 
         } 
         
@@ -157,10 +171,6 @@ function Refac_RPS()  {
     }, [countround,playerwin,compwin])
     
 
-
-
-
-    
     return (
         <Fragment>
         <Navbar_ / >
@@ -193,14 +203,17 @@ function Refac_RPS()  {
                     <div>
                         <h5>player pilih: {playerOne}</h5>
                         <h5>comp pilih: {playerTwo}</h5>
-                        <h5> player menang: {playerwin}</h5>
+                        <h5> player menang : {playerwin}</h5>
                         <h5> comp menang: {compwin}</h5>
                         <h5> tie: {tie}</h5>
-                        <h5> countronde: {countround}</h5>
-                        <h5> ronde: {round}</h5>
-                        <h5> menangronde: {roundwin}</h5>
-                        <h5> kalahronde: {roundlose}</h5>
-                        <h5> tieronde: {roundtie}</h5>
+                        <h5> jumlahsuit: {countround}</h5>
+                        <h5> player menang {roundwin} ronde </h5>
+                        <h5> player kalah {roundlose} ronde </h5>
+                        <h5> ronde sekarang : { round+ 1}</h5>
+                        <h5>{ bawahsepuluh() ? <h1> </h1>:
+                        <h5> Ronde {round} untuk Player : {menang ? <h5>Menang</h5> :<h5>Kalah</h5>}</h5> 
+                         } </h5>
+                        
                     </div>
                     </div>
               </div>
