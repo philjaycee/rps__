@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
-import RPS from './rps'
+import scissors from "../assets/images/gunting.png";
+import paper from "../assets/images/kertas.png";
+import rock from "../assets/images/batu.png";
 
-function Player (props) {
+function Player ({weapons}) {
     return (
-      <div className="container">
-          <img className="player-image"
-           
-           src={this.props.rock} alt ="rock" />
-         <img className="player-image"
-           src={this.props.paper} alt ="paper" />
-        <img className="player-image"
-           src={this.props.scissors} alt ="scissors" />
+      <>
+      <div className="player">
+        <img
+          className="player-image"
+          src={
+            weapons === "rock" ? rock : weapons === "scissor" ? scissors : paper
+          }
+          alt="Rock Paper Scissors"
+        />
       </div>
+    </>
     )
 }
 

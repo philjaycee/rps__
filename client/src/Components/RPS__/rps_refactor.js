@@ -4,6 +4,9 @@ import rock from '../assets/images/batu.png'
 import paper from '../assets/images/kertas.png'
 import refresh from '../assets/images/refresh.png'
 import Navbar_ from '../Navbar_2/Navbar'
+import Player from "./player";
+import "./styles_rps.css";
+
 
 const weapons = ["rock", "paper", "scissor"];
 
@@ -96,42 +99,51 @@ function Refac_RPS()  {
         }
     }
 
-    useEffect(() => {
+    function compchange()  {
+        setPlayerTwo(weapons[(Math.floor(Math.random() * weapons.length))])
+      } 
 
-        const compchange = () => {
-          setPlayerTwo(weapons[(Math.floor(Math.random() * weapons.length))])
-        } 
+    function checkResult()  {
+            
+        switch(playerOne + playerTwo) {
+            case 'scissorpaper':
+            case 'rockscissor':
+            case 'paperrock':
+              setplayerwin(playerwin+1)
+              break
+            case 'paperscissor':
+            case 'scissorrock':
+            case 'rockpaper':
+              setcompwin(compwin+1)
+              break
+            case 'rockrock':
+            case 'paperpaper':
+            case 'scissorscissor':
+              settie(tie+1)
+              break
+            }
+    }
+    
+
+    
+  function startGame() {
+    let counter = 0;
+    let gameInterval = setInterval(() => {
+      counter++;
+      compchange()
+      checkResult()
+      if (counter <= 1) {
+        clearInterval(gameInterval);
+      }
+    }, 100);
+  };
+
+    useEffect(() => {
         compchange()
     } 
     , [playerTwo] )
 
-    useEffect(() => {
-        const checkResult = () => {
-            
-            switch(playerOne + playerTwo) {
-                case 'scissorpaper':
-                case 'rockscissor':
-                case 'paperrock':
-                  setplayerwin(playerwin+1)
-                  break
-                case 'paperscissor':
-                case 'scissorrock':
-                case 'rockpaper':
-                  setcompwin(compwin+1)
-                  break
-                case 'rockrock':
-                case 'paperpaper':
-                case 'scissorscissor':
-                  settie(tie+1)
-                  break
-                }
-        }
-        
-        checkResult()
-        console.log(playerOne+playerTwo)
-
-    }, [playerOne,playerTwo])
-
+  
 
     useEffect(() => {
         
@@ -191,11 +203,22 @@ function Refac_RPS()  {
                                 <div className = "img_">
                                     <img className ="btk my-4"src= {scissors} onClick={playerchangingScissors} ></img>
                                 </div>
-                                </div>
+                            </div>
+
+                            <div classname ="py-5">
+                                <Player weapons={playerOne} />
+                                <Player weapons={playerTwo} />
+                            </div>
+
+                            <button type="button" onClick={startGame}>
+                                Start!
+                                </button>
 
                             </div>
                         </div>
                     </div>
+
+                    
              
 
                <img className="refresh " src= {refresh}  ></img>

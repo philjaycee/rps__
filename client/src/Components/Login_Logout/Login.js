@@ -16,14 +16,15 @@ const Login = () => {
   const { username, password } = inputs;
 
   const onChange = e => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value }); }
+    setInputs({ ...inputs, [e.target.name]: e.target.value })
+   }
 
-  const onSubmitForm = async e => {
+  const onSubmitForm =  e => {
     setLoading(true)
     e.preventDefault();
     try {
       const body = { username, password };
-      const response = await fetch(
+       fetch(
         "http://localhost:5000/api/user/login",
         {
           method: "POST",
