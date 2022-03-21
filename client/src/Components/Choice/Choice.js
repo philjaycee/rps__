@@ -2,8 +2,7 @@ import React,{Component, Fragment} from 'react';
 import {Container,Button} from 'reactstrap';
 import Navbar_2 from '../Navbar_2/Navbar'
 import {MenuItems} from './MenuChoice'
-import styles from './choice.css';
-import './choice.css'
+import './game_choice.css'
 import { NavItem } from 'react-bootstrap';
 
 /*
@@ -54,10 +53,12 @@ class Choice extends Component{
   
   render() {   
     return(
-    <Fragment>
+      <>
+     
     <Navbar_2/>
-    <div className = " container m-3 p-3 mx-5">
-      <div className = "content align-items-center justify-content-center text-center p-5">
+    <div className ="background_choice p-5 ">
+    <div className = " banner_choice container mx-2 p-2 ">
+      <div className = "container align-items-center justify-content-center text-center p-5">
             <h1> Game List</h1>
                <h4>Choose Your Game </h4>
             <div className ="row py-5 my-2 ">
@@ -74,7 +75,8 @@ class Choice extends Component{
             </div>
       </div>
     </div>
-    </Fragment>
+   </div>
+   </>
     )}
 }
 

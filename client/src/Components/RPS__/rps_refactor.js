@@ -180,7 +180,7 @@ function Refac_RPS()  {
     return (
         <Fragment>
         <Navbar_ / >
-       <div className = "background">
+       <div className = "background py-5">
         <div className ="container py-5 mx-5">
           <div className ="content py-2 ">
             <div className="container ">
