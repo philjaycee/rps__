@@ -51,3 +51,7 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+.background {
+  background-color: orange;
+}

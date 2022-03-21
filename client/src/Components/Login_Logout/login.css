@@ -1,16 +1,15 @@
 @media all and (min-width: 480px) {
-    .Login {
-      padding: 60px 0;
-    }
-  
-    .Login form {
-      align-items:center;
-      margin: 0 auto;
-      max-width: 320px;
-     
-    }
-
-    .submit_ .Login {
-        padding-top:20px;
-    }
+  .Login {
+    padding: 60px 0;
   }
+
+  .Login form {
+    align-items: center;
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .submit_ .Login {
+    padding-top: 20px;
+  }
+}

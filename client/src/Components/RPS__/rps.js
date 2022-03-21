@@ -147,42 +147,42 @@ class RPS extends Component {
     <Navbar_ / >
     <div className ="container px-5 mx-5">
       <div className ="content p-5">
-      <div className="container">
-        <div className = "row">
-          <div className = "col-lg px-2">
-          <div className="d-flex flex-column">
+            <div className="container">
+              <div className = "row">
+                <div className = "col-lg px-2">
+                  <div className="d-flex flex-column">
 
-          <div className = {hover_cls} >
-                <img className ="btk my-4" src= {rock} onClick={this.playerchangingRock} ></img>
-          </div>
-          <div className = "img_">
-          <img className ="btk my-4" src= {paper} onClick={this.playerchangingPaper} ></img>
-          </div>
-          <div className = "img_">
-          <img className ="btk my-4"src= {scissors} onClick={this.playerchangingScissors} ></img>
-          </div>
-          </div>
-          </div>
+                    <div className = "img_" >
+                          <img className ="btk my-4" src= {rock} onClick={this.playerchangingRock} ></img>
+                    </div>
+                    <div className = "img_">
+                    <img className ="btk my-4" src= {paper} onClick={this.playerchangingPaper} ></img>
+                    </div>
+                    <div className = "img_">
+                    <img className ="btk my-4"src= {scissors} onClick={this.playerchangingScissors} ></img>
+                    </div>
+                  </div>
+                </div>
 
-          <div className = "kolom-tengah col-sm-7 d-flex  flex-column py-5 align-self-center ">
-            <div className="d-flex  flex-column py-5 align-self-center ">
-              <h1>VS</h1>
+                      <div className = "kolom-tengah col-sm-7 d-flex  flex-column py-5 align-self-center ">
+                        <div className="d-flex  flex-column py-5 align-self-center ">
+                          <h1>VS</h1>
+                        </div>
+                      </div>
+                
+                      <div className = "col-sm">
+                        <div class="d-flex flex-column">
+
+                              <img className ="btk my-4" src= {rock} onClick={this.playerchangingRock} ></img>
+                        
+                              <img className ="btk my-4" src= {paper} onClick={this.playerchangingPaper} ></img>
+                              
+                              <img className ="btk my-4" src= {scissors} onClick={this.playerchangingScissors} ></img>
+                        </div>
+                      </div>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className = "col-sm">
-          <div class="d-flex flex-column">
-
-          <img className ="btk my-4" src= {rock} onClick={this.playerchangingRock} ></img>
-    
-          <img className ="btk my-4" src= {paper} onClick={this.playerchangingPaper} ></img>
-           
-          <img className ="btk my-4" src= {scissors} onClick={this.playerchangingScissors} ></img>
-          </div>
-          </div>
-          </div>
-        </div>
-      </div>
       <img className="refresh " src= {refresh} onClick={this.refresh} ></img>
       <div className ="container py-4 my-2">
       <h5> Rock Paper Scissors</h5>
