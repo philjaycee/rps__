@@ -4,7 +4,7 @@ import Navbar from '../Navbar_2/Navbar'
 import {FormGroup, Col, Label} from 'reactstrap'
 import './login.css'
 
-
+//butuh update cors
 const Login = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
