@@ -6,18 +6,11 @@ import './login.css'
 
 
 const Login = () => {
-  const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const [isLoading, setLoading] = useState(false)
 
-  const { username, password } = inputs;
-
-  const onChange = e => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value })
-   }
 
   const onSubmitForm =  e => {
     setLoading(true)
@@ -60,7 +53,7 @@ const Login = () => {
                         className="form-control"
                         placeholder= "username"
                         value={username}
-                        onChange={e => setInputs(e.target.value)}
+                        onChange={e => setUsername(e.target.value)}
                         />
                         </Col>
                         </FormGroup>
@@ -73,7 +66,7 @@ const Login = () => {
                         className="form-control"
                         placeholder= "password"
                         value={password}
-                        onChange={e => setInputs(e.target.value)}
+                        onChange={e => setPassword(e.target.value)}
                         />
                         </Col>
                         </FormGroup>
