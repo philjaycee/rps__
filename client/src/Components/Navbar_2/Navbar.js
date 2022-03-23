@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Navbar_2.css'
+import { useNavigate } from 'react-router-dom'
 import {MenuItems } from './MenuItem'
 
 import {
@@ -11,7 +12,18 @@ import {
 } from 'react-bootstrap'
 
 
+const history = useNavigate
+  
+  function logOut() {
+     history.push('/register')
+  }
+
+
+
 export default class Navbar_ extends Component {
+  
+  
+  
   render() {
     return (
         <Navbar bg="dark" variant="dark"  expand="lg"  >
@@ -32,16 +44,14 @@ export default class Navbar_ extends Component {
                 )
               })}
               
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href= '/profile'>Profile</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown title="User Name" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={logOut} >Logout</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Another Link</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          
         </Container>
       </Navbar>
     )

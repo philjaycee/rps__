@@ -10,7 +10,6 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const [isLoading, setLoading] = useState(false)
 
-
   const onSubmitForm =  e => {
     setLoading(true)
     e.preventDefault();
@@ -24,11 +23,13 @@ const Login = () => {
             "Content-type": "application/json"
           },
           body: JSON.stringify(body)
-        }).then(response => {console.log(response); setLoading(false)})
+        }).then(response => {console.log(response); localStorage.setItem('token', response.token); setLoading(false)})
     } catch (err) {
       console.error(err.message);
     }
   };
+
+
 
    return (
           <>
