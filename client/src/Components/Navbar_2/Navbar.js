@@ -18,11 +18,8 @@ const history = useNavigate
      history.push('/register')
   }
 
-
-
 export default class Navbar_ extends Component {
-  
-  
+    
   
   render() {
     return (
@@ -44,7 +41,7 @@ export default class Navbar_ extends Component {
                 )
               })}
               
-              <NavDropdown title="User Name" id="basic-nav-dropdown">
+              <NavDropdown title="username" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={logOut} >Logout</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                 <NavDropdown.Divider />

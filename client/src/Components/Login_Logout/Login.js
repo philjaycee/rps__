@@ -23,7 +23,9 @@ const Login = () => {
             "Content-type": "application/json"
           },
           body: JSON.stringify(body)
-        }).then(response => {console.log(response); localStorage.setItem('token', response.token); setLoading(false)})
+        }).then(response =>  response.json())
+          .then(response => {console.log(response); setLoading(false)} )
+          .then(response => {localStorage.setItem('response', "coba12")})
     } catch (err) {
       console.error(err.message);
     }
