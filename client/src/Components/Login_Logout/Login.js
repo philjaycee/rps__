@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Navbar from '../Navbar_2/Navbar'
+import { useNavigate } from 'react-router-dom'
 import {FormGroup, Col, Label} from 'reactstrap'
 import './login.css'
 
@@ -9,6 +10,8 @@ const Login = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setLoading] = useState(false)
+
+  const navigate = useNavigate()
 
   const onSubmitForm =  e => {
     setLoading(true)
@@ -24,8 +27,8 @@ const Login = () => {
           },
           body: JSON.stringify(body)
         }).then(response =>  response.json())
-          .then(response => {console.log(response); setLoading(false)} )
-          .then(response => {localStorage.setItem('response', "coba12")})
+          .then(json => {localStorage.setItem('token', json.accessToken); localStorage.setItem('username', json.username)})
+          .then(json => {setLoading(false); navigate('/')})
     } catch (err) {
       console.error(err.message);
     }
@@ -35,18 +38,13 @@ const Login = () => {
 
    return (
           <>
-          
             <Navbar />
-             
             <div className ="container ">
                 <h1 className="pt-5"> Form Login</h1>    
                 <div className="Login">
-
                     <div className="row row-content">
                     <div className="justify-content-center">
-         
-                    <form className="" onSubmit={onSubmitForm}>
-                        
+                    <form className="" onSubmit={onSubmitForm}> 
                         <FormGroup row>
                         <Label htmlFor="username">Username</Label>
                             <Col>

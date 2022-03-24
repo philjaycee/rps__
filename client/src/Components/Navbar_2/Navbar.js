@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {useState,useEffect} from 'react'
 import './Navbar_2.css'
 import { useNavigate } from 'react-router-dom'
 import {MenuItems } from './MenuItem'
@@ -12,16 +12,94 @@ import {
 } from 'react-bootstrap'
 
 
-const history = useNavigate
+
+ //if (!isAuthenticated) return 
+ //navigate('/login')
+
+
+
+
+
+
+ /*
+ useEffect(() => {
+        
+  const checkUser = () => {
+    const token = localStorage.getItem('token')
+    if(!!token) {
+       setisAuthenticated(true)
+    }
+  }
+  
+  checkUser()
+
+}, [isAuthenticated])
+*/
+
+
+/*
+
+ useEffect(() => {
+        
+  const checkUser = () => {
+    const token = localStorage.getItem('token')
+    if(token) {
+       setisAuthenticated(true)
+    }
+    console.log(isAuthenticated)
+  }
+  
+  checkUser()
+
+}, [isAuthenticated])
+
+*/
+
+
+
+function Navbar_() {
+
+  const [isAuthenticated, setisAuthenticated] = useState(false)
+
+  const navigate = useNavigate()
   
   function logOut() {
-     history.push('/register')
-  }
+    localStorage.clear()
+    navigate('/login')
+ } 
 
-export default class Navbar_ extends Component {
-    
+
+
+ useEffect(() => {
+        
+  const usermustLogin = () => {
+    const token = localStorage.getItem('token')
+    if(!token) {
+       navigate('/login')
+    }
+    console.log(isAuthenticated)
+  }
+  usermustLogin()
+},[isAuthenticated])
+ 
+
+useEffect(() => {
+        
+  const checkUser = () => {
+    const token = localStorage.getItem('token')
+    if(token) {
+       setisAuthenticated(true)
+    }
+  }
   
-  render() {
+  checkUser()
+
+},[isAuthenticated])
+
+    
+   
+
+  
     return (
         <Navbar bg="dark" variant="dark"  expand="lg"  >
         <Container>
@@ -51,6 +129,8 @@ export default class Navbar_ extends Component {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+    
     )
-  }
 }
+
+export default Navbar_
