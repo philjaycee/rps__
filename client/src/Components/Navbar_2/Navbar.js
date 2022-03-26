@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, {useState,useEffect} from 'react'
 import './Navbar_2.css'
+import { useNavigate } from 'react-router-dom'
 import {MenuItems } from './MenuItem'
 
 import {
@@ -11,8 +12,80 @@ import {
 } from 'react-bootstrap'
 
 
-export default class Navbar_ extends Component {
-  render() {
+
+ //if (!isAuthenticated) return 
+ //navigate('/login')
+
+
+
+
+
+
+ /*
+ useEffect(() => {
+        
+  const checkUser = () => {
+    const token = localStorage.getItem('token')
+    if(!!token) {
+       setisAuthenticated(true)
+    }
+  }
+  
+  checkUser()
+
+}, [isAuthenticated])
+*/
+
+
+/*
+
+ useEffect(() => {
+        
+  const checkUser = () => {
+    const token = localStorage.getItem('token')
+    if(token) {
+       setisAuthenticated(true)
+    }
+    console.log(isAuthenticated)
+  }
+  
+  checkUser()
+
+}, [isAuthenticated])
+
+*/
+
+/*
+useEffect(() => {
+        
+  const usermustLogin = () => {
+    const token = localStorage.getItem('token')
+    if(!token) {
+       (navigate('/login'))
+    }
+    console.log(isAuthenticated)
+  }
+  usermustLogin()
+},[isAuthenticated])
+*/
+
+
+
+
+
+function Navbar_() {
+
+  let user = localStorage.getItem('username')
+
+  const [isAuthenticated, setisAuthenticated] = useState(false)
+
+  const navigate = useNavigate()
+  
+  function logOut() {
+    localStorage.clear()
+    navigate('/login')
+ } 
+
     return (
         <Navbar bg="dark" variant="dark"  expand="lg"  >
         <Container>
@@ -32,18 +105,18 @@ export default class Navbar_ extends Component {
                 )
               })}
               
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown title={user} id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={logOut} >Logout</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Another Link</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          
         </Container>
       </Navbar>
+    
     )
-  }
 }
+
+export default Navbar_

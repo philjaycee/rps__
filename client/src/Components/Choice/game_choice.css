@@ -1,0 +1,15 @@
+.background_choice {
+  background-color: rgb(250, 200, 107);
+  padding-left: 10px;
+}
+
+.banner_choice {
+  padding-right: 100px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}

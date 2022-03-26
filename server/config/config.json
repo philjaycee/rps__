@@ -1,8 +1,8 @@
 {
-  "development": {
-    "username": "binar_platinum_k2",
-    "password": "123456",
-    "database": "code_challenge_10",
+ "development": {
+    "username": "postgres",
+    "password": "postgree123",
+    "database": "ch10_auth",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
