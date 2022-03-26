@@ -1,4 +1,5 @@
-import React,{Component, Fragment} from 'react';
+import React,{useState, useEffect, Fragment} from 'react';
+import { useNavigate } from 'react-router-dom'
 import {Container,Button} from 'reactstrap';
 import Navbar_2 from '../Navbar_2/Navbar'
 import {MenuItems} from './MenuChoice'
@@ -49,9 +50,36 @@ const {danger} =this.state;
                <img src= "../Dokumentasi/logo.png" width="100" height="100"></img>
 */
 
-class Choice extends Component{
+function  Choice(){
+
+  const [isAuthenticated, setisAuthenticated] = useState(false)
+
+  const navigate = useNavigate()
+
   
-  render() {   
+
+  useEffect(() => {
+    const checkUser = () => {
+      const token = localStorage.getItem('token')
+      if(token) {
+        setisAuthenticated(true)
+      }
+    }
+    checkUser()
+
+  },[isAuthenticated])
+
+  useEffect(() => {
+        
+    const usermustLogin = setInterval(()=> {
+      const token = localStorage.getItem('token')
+      if(!token) {
+         (navigate('/login'))
+      }}, 1000);
+      return () => clearInterval(usermustLogin);
+  },[isAuthenticated])
+  
+  
     return(
       <>
      
@@ -78,6 +106,6 @@ class Choice extends Component{
    </div>
    </>
     )}
-}
+
 
 export default Choice

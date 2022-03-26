@@ -55,6 +55,22 @@ import {
 
 */
 
+/*
+useEffect(() => {
+        
+  const usermustLogin = () => {
+    const token = localStorage.getItem('token')
+    if(!token) {
+       (navigate('/login'))
+    }
+    console.log(isAuthenticated)
+  }
+  usermustLogin()
+},[isAuthenticated])
+*/
+
+
+
 
 
 function Navbar_() {
@@ -67,20 +83,6 @@ function Navbar_() {
     localStorage.clear()
     navigate('/login')
  } 
-
-
-
- useEffect(() => {
-        
-  const usermustLogin = () => {
-    const token = localStorage.getItem('token')
-    if(!token) {
-       navigate('/login')
-    }
-    console.log(isAuthenticated)
-  }
-  usermustLogin()
-},[isAuthenticated])
  
 
 useEffect(() => {
@@ -91,15 +93,11 @@ useEffect(() => {
        setisAuthenticated(true)
     }
   }
-  
   checkUser()
 
 },[isAuthenticated])
 
-    
-   
 
-  
     return (
         <Navbar bg="dark" variant="dark"  expand="lg"  >
         <Container>
