@@ -75,6 +75,8 @@ useEffect(() => {
 
 function Navbar_() {
 
+  let user = localStorage.getItem('username')
+
   const [isAuthenticated, setisAuthenticated] = useState(false)
 
   const navigate = useNavigate()
@@ -83,20 +85,6 @@ function Navbar_() {
     localStorage.clear()
     navigate('/login')
  } 
- 
-
-useEffect(() => {
-        
-  const checkUser = () => {
-    const token = localStorage.getItem('token')
-    if(token) {
-       setisAuthenticated(true)
-    }
-  }
-  checkUser()
-
-},[isAuthenticated])
-
 
     return (
         <Navbar bg="dark" variant="dark"  expand="lg"  >
@@ -117,7 +105,7 @@ useEffect(() => {
                 )
               })}
               
-              <NavDropdown title="username" id="basic-nav-dropdown">
+              <NavDropdown title={user} id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={logOut} >Logout</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                 <NavDropdown.Divider />
