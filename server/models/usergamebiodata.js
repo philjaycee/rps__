@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         username: this.username
       }
       const theSecret = 'Aplikasi platinum kelompok 2'
-      const token = jwt.sign(payload, theSecret, { expiresIn: '300s'})
+      const token = jwt.sign(payload, theSecret, { expiresIn: '1h'})
 
       return token
     }
