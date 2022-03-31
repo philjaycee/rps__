@@ -5,6 +5,9 @@ import axios from "axios"
 
 
 const ProfilePage = () => {
+
+    let user = localStorage.getItem('username')
+
     const [ProfileName, setProfileName] = useState("");
     const [ProfileCell, setProfileCell] = useState("");
     const [ProfileImage, setProfileImage] = useState("");
@@ -32,16 +35,18 @@ const ProfilePage = () => {
     return (
         <div className="App">
             <Navbar />
+            <div className ="background_choice p-2 ">
             <div className ="container mt-5">
                 <h1> Profile Page</h1>
                 <div className ="p-5">
                   <div className = "card">
                     <img src={ProfileImage}  />
-                    <h1 > {ProfileName}</h1>
+                    <h1 > {user}</h1>
                     <p> {ProfileEmail}</p>
                     <p>{ProfileCell}</p>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )

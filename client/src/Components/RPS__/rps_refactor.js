@@ -50,6 +50,17 @@ else if ((countround%10 === 0) && (playerwin % 10 < compwin %10)) {
                 setRoundTie(roundtie+1)
             }
 
+
+<h5>player pilih: {playerOne}</h5>
+                                            <h5>comp pilih: {playerTwo}</h5>
+                                            <h5> player menang : {playerwin}</h5>
+                                            <h5> comp menang: {compwin}</h5>
+                                            <h5> tie: {tie}</h5>
+                                            <h5> jumlahsuit: {countround}</h5>
+                                            <h5> player menang {roundwin} ronde </h5>
+                                            <h5> player kalah {roundlose} ronde </h5>
+                                            <h5> ronde sekarang : { round+ 1}</h5>
+
         
 
 
@@ -117,7 +128,6 @@ function Refac_RPS()  {
             if(countround%10 === 0 && countround > 0 ){
                     setplayerwin(0)
                     setcompwin(0)
-                    settie(0)
                     setRound(round+1)
             }
         } 
@@ -129,7 +139,7 @@ function Refac_RPS()  {
     useEffect(() => {
         
         const sumwinloseround = () => {
-            if((countround%10 === 0 && 0<countround<=10 )&&((playerwin) > (compwin )) )  {
+            if((countround%10 === 0 && countround > 0 )&&((playerwin) > (compwin )) )  {
                 setMenang(true)
                 setRoundWin(roundwin+1)
             }
@@ -181,38 +191,41 @@ function Refac_RPS()  {
         <Fragment>
         <Navbar_ / >
        <div className = "background py-5">
-        <div className ="container py-5 mx-5">
-          <div className ="content py-2 ">
+       <h1 className="d-flex flex-column align-self-center"> Rock Paper Scissors</h1>
+        <div className ="container py-2 mx-5">
+          <div className ="content  ">
             <div className="container ">
               <div className = "row">
                 <div className = "col-sm px-2">
-
                     <div className="d-flex flex-column">
                             <div className = "img_" >
                             <Player weapons={playerOne} />
                             </div>
+                            <h1>Player</h1>
+                            <h5>{playerwin}</h5>
                     </div>
                     </div>
-
                       <div className = "kolom-tengah col-sm-4 d-flex  flex-column py-5 align-self-center ">
-                        <div className="d-flex  flex-column py-5 align-self-center ">
-                          <h1>VS</h1>
+                        <div className="d-flex  flex-column py-5 align-self-center ">                            
+                          <h4>VS</h4>
+                          <h5>{countround}</h5>
                         </div>
+                        <h1>{round+1}</h1>
                       </div>
                 
                       <div className = "col-sm">
                         <div class="d-flex flex-column">
-                        <Player weapons={playerTwo} />
-                              
+                        <Player weapons={playerTwo} />  
                         </div>
+                            <h1>Comp</h1>
+                            <h5>{compwin}</h5>
                       </div>
-
                 </div>
               </div>
             </div>
 
 
-                                        <div className ="my-2" >
+                                        <div className ="" >
                                                     <button
                                                         className="weaponBtn"
                                                         onClick={playerchangingRock}
@@ -230,17 +243,9 @@ function Refac_RPS()  {
                
 
             <div className ="container py-4 my-2">
-                    <h5> Rock Paper Scissors</h5>
+                   
                                         <div>
-                                            <h5>player pilih: {playerOne}</h5>
-                                            <h5>comp pilih: {playerTwo}</h5>
-                                            <h5> player menang : {playerwin}</h5>
-                                            <h5> comp menang: {compwin}</h5>
-                                            <h5> tie: {tie}</h5>
-                                            <h5> jumlahsuit: {countround}</h5>
-                                            <h5> player menang {roundwin} ronde </h5>
-                                            <h5> player kalah {roundlose} ronde </h5>
-                                            <h5> ronde sekarang : { round+ 1}</h5>
+                                            
                                             <h5>{ bawahsepuluh() ? <h1> </h1>:
                                             <h5> Ronde {round} untuk Player : {menang ? <h5>Menang</h5> :<h5>Kalah</h5>}</h5> 
                                             } </h5>

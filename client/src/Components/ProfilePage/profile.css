@@ -1,11 +1,16 @@
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align:center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
 }
 
 .title {
-    color: orange;
-    font-size: 18px;
+  color: orange;
+  font-size: 18px;
+}
+
+.background_choice {
+  background-color: rgb(250, 200, 107);
+  padding-left: 2px;
 }

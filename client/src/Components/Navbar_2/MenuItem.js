@@ -15,13 +15,9 @@ export const MenuItems=[
         cName:'nav-links'
     },
     {
-        title:'About Me',
+        title:'About',
         url:'#',
         cName:'nav-links'
     },
-    {
-        title:'Login',
-        url:'/login',
-        cName:'nav-links_login'
-    },
+    
 ]
