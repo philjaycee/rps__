@@ -3,9 +3,10 @@ import LandPage from './Components/LandPage/LandPage'
 import './App.css'
 import { BrowserRouter,Route,Routes} from 'react-router-dom'
 import Choice from './Components/Choice/Choice'
-import RPS from './Components/RPS__/rps'
+import Refac_RPS from './Components/RPS__/rps_refactor'
 import Login from './Components/Login_Logout/Login'
 import Register from './Components/Login_Logout/Register'
+import ProfilePage from './Components/ProfilePage/profilepage'
 
 /*
   <h1 id='text1'>PLAY TRADITIONAL GAME</h1>
@@ -15,6 +16,7 @@ import Register from './Components/Login_Logout/Register'
         <button id='button2'></button>
 */
 
+
 function App(){
   return (
     <div className='App'>
@@ -23,9 +25,10 @@ function App(){
         <Routes>
         <Route path="/" element={<LandPage/>} />
          <Route path="/choicegame" element={<Choice/>} />
-         <Route path="/game" element={<RPS/>} />
+         <Route path="/game" element={<Refac_RPS/>} />
          <Route path="/login" element={<Login/>} />
          <Route path="/register" element={<Register/>} />
+         <Route path="/profilepage" element={<ProfilePage/>} />
         </Routes>
       </BrowserRouter>
     </div>

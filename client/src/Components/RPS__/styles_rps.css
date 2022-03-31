@@ -1,0 +1,57 @@
+.player {
+  width: 240px;
+  height: 180px;
+  margin: 50px;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+}
+
+.weaponBtn {
+  width: 100px;
+  height: 50px;
+  display: inline;
+  margin: auto 15px;
+  color: black;
+  font-size: 18px;
+  border-radius: 25px;
+  background: orange;
+}
+
+.player:nth-child(2) {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.winner {
+  width: 100px;
+  height: 55px;
+  margin: 10px auto;
+  color: brown;
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+}
+.player-image {
+  height: 200px;
+  width: auto;
+}
+button {
+  width: 200px;
+  height: 50px;
+  display: block;
+  margin: 10px auto;
+  color: black;
+  font-size: 18px;
+  border-radius: 25px;
+  background: orange;
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.background {
+  background-color: burlywood;
+}
