@@ -208,7 +208,6 @@ function Refac_RPS()  {
                       <div className = "kolom-tengah col-sm-4 d-flex  flex-column py-5 align-self-center ">
                         <div className="d-flex  flex-column py-5 align-self-center ">                            
                           <h4>VS</h4>
-                          <h5>{countround}</h5>
                         </div>
                         <h1>{round+1}</h1>
                       </div>

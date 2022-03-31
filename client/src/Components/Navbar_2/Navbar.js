@@ -85,9 +85,23 @@ function Navbar_() {
   function logOut() {
     localStorage.clear()
     navigate('/login')
- } 
+  } 
+
+  useEffect(() => {
+    const checkUser = () => {
+      const token = localStorage.getItem('token')
+      if(token) {
+        setisAuthenticated(true)
+      }
+    }
+    checkUser()
+  },[isAuthenticated])
 
     return (
+
+       isAuthenticated ? 
+
+        
         <Navbar bg="dark" variant="dark"  expand="lg"  >
         <Container>
           
@@ -97,7 +111,8 @@ function Navbar_() {
           
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className =" px-5 mx-5">
-            <Nav className =" px-5 mx-5">          
+            <Nav className =" px-5 mx-5">   
+            <Nav className ="px-5">        
             <Nav className="me-auto mx-5 px-5 d-flex justify-content-end ">
 
             {MenuItems.map((item,index) => {
@@ -108,20 +123,56 @@ function Navbar_() {
               })}
               
               <NavDropdown title={user} id="basic-nav-dropdown">
-                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                 <NavDropdown.Item href="/profilepage">Profile</NavDropdown.Item>
                 <NavDropdown.Item onClick={logOut} >Logout</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Another Link</NavDropdown.Item>
               </NavDropdown>
+              </Nav>
             </Nav>
             </Nav>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      : 
+      <Navbar bg="dark" variant="dark"  expand="lg"  >
+        <Container>
+          
+          <Navbar.Brand href="#home"><img src={Logo__} height="25" width="25"></img></Navbar.Brand>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          
+          <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className =" px-5 mx-5">
+            <Nav className =" px-5 mx-5">  
+            <Nav className =" px-5 ">    
+           
+            <Nav className="me-auto mx-5 px-5 d-flex justify-content-end ">
+
+            {MenuItems.map((item,index) => {
+            return(
+              <Nav.Link key={index} href={item.url}>
+                {item.title}</Nav.Link>
+                )
+              })}
+              
+              <NavDropdown title="username" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Another Link</NavDropdown.Item>
+              </NavDropdown>
+                </Nav>
+               </Nav>
+              </Nav>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
     
     )
+  
 }
 
 export default Navbar_
