@@ -8,6 +8,6 @@ router.post("/login", userController.login);
 router.get("/logout", userController.logout);
 router.get("/profile", restrict, userController.readProfile);
 router.put("/profile", restrict, userController.updateProfile);
-router.get("/test", restrict, userController.test);
+router.get("/score", restrict, userController.readScore);
 
 module.exports = router;

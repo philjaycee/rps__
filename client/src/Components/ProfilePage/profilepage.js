@@ -14,7 +14,6 @@ const ProfilePage = () => {
 
   const profileData = async () => {
     try {
-      console.log("test1");
       const resp = await fetch("http://localhost:5000/api/user/profile", {
         method: "GET",
         headers: { Authorization: token },
@@ -22,19 +21,34 @@ const ProfilePage = () => {
 
       if (resp.ok) {
         const json = await resp.json();
-        console.log("json", json);
-        setProfileCell(json.currentUser.fullName);
-        setProfileEmail(json.currentUser.email);
-        setProfileGender(json.currentUser.gender);
-        setScore(json.data[0].total_score);
+        setProfileCell(json.fullName);
+        setProfileEmail(json.email);
+        setProfileGender(json.gender);
       }
     } catch (err) {
-      console.log("err123", err);
+      console.log("err profile: ", err.message);
+    }
+  };
+
+  const scoreData = async () => {
+    try {
+      const resp = await fetch("http://localhost:5000/api/user/score", {
+        method: "GET",
+        headers: { Authorization: token },
+      });
+
+      if (resp.ok) {
+        const json = await resp.json();
+        setScore(json[0].total_score);
+      }
+    } catch (err) {
+      console.log("err score:", err);
     }
   };
 
   useEffect(() => {
     profileData();
+    scoreData();
   }, []);
 
   return (

@@ -47,6 +47,12 @@ module.exports = {
   },
 
   readProfile: (req, res) => {
+    const currentUser = req.user;
+    console.log("req", req);
+    res.json(currentUser);
+  },
+
+  readScore: (req, res) => {
     UserGameHistory.findAll({
       attributes: [
         "userID",
@@ -55,12 +61,9 @@ module.exports = {
       group: ["userID"],
       where: { userID: req.user.id },
     }).then((data) => {
-      const currentUser = req.user;
-      res.status(200).json({ currentUser, data });
+      res.status(200).json(data);
     });
   },
-
-  test: (req, res) => {},
 
   updateProfile: (req, res) => {
     UserGameBiodata.update(
