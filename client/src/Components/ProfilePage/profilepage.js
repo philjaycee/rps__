@@ -5,29 +5,29 @@ import axios from "axios";
 
 const ProfilePage = () => {
   let user = localStorage.getItem("username");
-
+  let token = localStorage.getItem("token");
   const [ProfileName, setProfileName] = useState("");
   const [ProfileCell, setProfileCell] = useState("");
-  const [ProfileImage, setProfileImage] = useState("");
+  const [ProfileGender, setProfileGender] = useState("");
   const [ProfileEmail, setProfileEmail] = useState("");
 
-  const profileData = () => {
-    // try {
-    // const resp = fetch("localhost:5000/api/user/test", {
-    //   method: "GET",
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => console.log("data", data));
-    // console.log("response", resp);
-    // setProfileCell(res.data.results[0].name);
-    // setProfileEmail(res.data.results[0].email);
-    // setProfileImage(res.data.results[0].picture.large);
-    // setProfileName(
-    //   `${res.data.results[0].name.first} ${res.data.results[0].name.last}`
-    // );
-    // } catch (err) {
-    //   console.log("err123", err);
-    // }
+  const profileData = async () => {
+    try {
+      console.log("test1");
+      const resp = await fetch("http://localhost:5000/api/user/profile", {
+        method: "GET",
+        headers: { Authorization: token },
+      });
+
+      if (resp.ok) {
+        const json = await resp.json();
+        setProfileCell(json.fullName);
+        setProfileEmail(json.email);
+        setProfileGender(json.gender);
+      }
+    } catch (err) {
+      console.log("err123", err);
+    }
   };
 
   useEffect(() => {
@@ -42,10 +42,10 @@ const ProfilePage = () => {
           <h1> Profile Page</h1>
           <div className="p-5">
             <div className="card">
-              <img src={ProfileImage} />
               <h1> {user}</h1>
-              <p> {ProfileEmail}</p>
               <p>{ProfileCell}</p>
+              <p> {ProfileEmail}</p>
+              <p>{ProfileGender}</p>
             </div>
           </div>
         </div>
