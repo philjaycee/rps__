@@ -1,4 +1,5 @@
-const { UserGameBiodata } = require("../models");
+const { UserGameBiodata, UserGameHistory } = require("../models");
+const sequelize = require("sequelize");
 
 function format(user) {
   const { id, username } = user;
@@ -46,18 +47,20 @@ module.exports = {
   },
 
   readProfile: (req, res) => {
-    // UserGameBiodata.findOne({
-    //   where: { userID: req.user.id },
-    // }).then((data) => {
-    //   res.status(200).json(data);
-    // });
-    const currentUser = req.user;
-    console.log("req", req);
-    res.json(currentUser);
+    UserGameHistory.findAll({
+      attributes: [
+        "userID",
+        [sequelize.fn("sum", sequelize.col("score")), "total_score"],
+      ],
+      group: ["userID"],
+      where: { userID: req.user.id },
+    }).then((data) => {
+      const currentUser = req.user;
+      res.status(200).json({ currentUser, data });
+    });
   },
-  test: (req, res) => {
-    console.log(req);
-  },
+
+  test: (req, res) => {},
 
   updateProfile: (req, res) => {
     UserGameBiodata.update(

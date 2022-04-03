@@ -10,6 +10,7 @@ const ProfilePage = () => {
   const [ProfileCell, setProfileCell] = useState("");
   const [ProfileGender, setProfileGender] = useState("");
   const [ProfileEmail, setProfileEmail] = useState("");
+  const [Score, setScore] = useState("");
 
   const profileData = async () => {
     try {
@@ -21,9 +22,11 @@ const ProfilePage = () => {
 
       if (resp.ok) {
         const json = await resp.json();
-        setProfileCell(json.fullName);
-        setProfileEmail(json.email);
-        setProfileGender(json.gender);
+        console.log("json", json);
+        setProfileCell(json.currentUser.fullName);
+        setProfileEmail(json.currentUser.email);
+        setProfileGender(json.currentUser.gender);
+        setScore(json.data[0].total_score);
       }
     } catch (err) {
       console.log("err123", err);
@@ -42,7 +45,8 @@ const ProfilePage = () => {
           <h1> Profile Page</h1>
           <div className="p-5">
             <div className="card">
-              <h1> {user}</h1>
+              <h1>{user}</h1>
+              <h3>{Score}</h3>
               <p>{ProfileCell}</p>
               <p> {ProfileEmail}</p>
               <p>{ProfileGender}</p>
