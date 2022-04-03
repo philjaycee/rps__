@@ -6,7 +6,7 @@ import axios from "axios";
 const ProfilePage = () => {
   let user = localStorage.getItem("username");
   let token = localStorage.getItem("token");
-  const [ProfileName, setProfileName] = useState("");
+  const [ProfileImage, setProfileImage] = useState("");
   const [ProfileCell, setProfileCell] = useState("");
   const [ProfileGender, setProfileGender] = useState("");
   const [ProfileEmail, setProfileEmail] = useState("");
@@ -46,10 +46,17 @@ const ProfilePage = () => {
     }
   };
 
+  
+    
+
+  
+
   useEffect(() => {
     profileData();
     scoreData();
+    
   }, []);
+
 
   return (
     <div className="App">
