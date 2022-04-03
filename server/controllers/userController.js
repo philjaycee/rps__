@@ -46,14 +46,17 @@ module.exports = {
   },
 
   readProfile: (req, res) => {
-    UserGameBiodata.findOne({
-      where: { userID: req.user.id },
-    }).then((data) => {
-      res.status(200).json(data);
-    });
-    // const currentUser = req.user;
-    // console.log("req", req);
-    // res.json(currentUser);
+    // UserGameBiodata.findOne({
+    //   where: { userID: req.user.id },
+    // }).then((data) => {
+    //   res.status(200).json(data);
+    // });
+    const currentUser = req.user;
+    console.log("req", req);
+    res.json(currentUser);
+  },
+  test: (req, res) => {
+    console.log(req);
   },
 
   updateProfile: (req, res) => {
