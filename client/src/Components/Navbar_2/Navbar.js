@@ -8,10 +8,27 @@ import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 
 function Navbar_() {
   let user = localStorage.getItem("username");
+  let token = localStorage.getItem("token");
 
   const [isAuthenticated, setisAuthenticated] = useState(false);
-
+  const [score, setScore] = useState("");
   const navigate = useNavigate();
+
+  const scoreData = async () => {
+    try {
+      const resp = await fetch("http://localhost:5000/api/user/score", {
+        method: "GET",
+        headers: { Authorization: token },
+      });
+
+      if (resp.ok) {
+        const json = await resp.json();
+        setScore(json[0].total_score);
+      }
+    } catch (err) {
+      console.log("err score:", err);
+    }
+  };
 
   function logOut() {
     localStorage.clear();
@@ -26,12 +43,13 @@ function Navbar_() {
       }
     };
     checkUser();
+    scoreData();
   }, [isAuthenticated]);
 
   return isAuthenticated ? (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg" className="navlink">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img src={Logo__} height="25" width="25"></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -48,7 +66,10 @@ function Navbar_() {
                     );
                   })}
 
-                  <NavDropdown title={user} id="basic-nav-dropdown">
+                  <NavDropdown
+                    title={`${user} , score: ${score}`}
+                    id="basic-nav-dropdown"
+                  >
                     <NavDropdown.Item href="/profilepage">
                       Profile
                     </NavDropdown.Item>

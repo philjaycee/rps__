@@ -42,6 +42,7 @@
   height: 200px;
   width: auto;
 }
+
 button {
   width: 200px;
   height: 50px;
@@ -52,10 +53,6 @@ button {
   border-radius: 25px;
   background: orange;
   outline: none;
-}
-
-button:hover {
-  cursor: pointer;
 }
 
 .background {
