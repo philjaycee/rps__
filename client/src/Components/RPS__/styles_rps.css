@@ -14,8 +14,14 @@
   margin: auto 15px;
   color: black;
   font-size: 18px;
+  border-width: 0ch;
   border-radius: 25px;
   background: orange;
+}
+
+.weaponBtn:hover {
+  background: brown;
+  color: white;
 }
 
 .player:nth-child(2) {
