@@ -12,4 +12,8 @@
   .submit_ .Login {
     padding-top: 20px;
   }
+  .required-field::after {
+    content: "*";
+    color: red;
+  }
 }
