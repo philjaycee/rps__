@@ -74,7 +74,7 @@ function Refac_RPS() {
   const [roundwin, setRoundWin] = useState(0);
   const [roundlose, setRoundLose] = useState(0);
   const [roundtie, setRoundTie] = useState(0);
-  const [menang, setMenang] = useState();
+  const [menang, setMenang] = useState(true);
 
   const [score, setScore] = useState("12");
   const [win, setWin] = useState("true");
@@ -144,34 +144,55 @@ function Refac_RPS() {
 
   useEffect(() => {
     const sumwinloseround = () => {
-      if (countround % 10 === 0 && countround > 0 && playerwin > compwin) {
+      if ((countround % 10 === 0) && (countround >= 0) && (playerwin > compwin)) {
         setMenang(true);
-        setRoundWin(roundwin + 1);
-      } else if (
-        countround % 10 === 0 &&
-        countround > 0 &&
-        playerwin < compwin
-      ) {
-        setRoundLose(roundlose + 1);
-      } else {
-        setRoundTie(tie + 1);
-      }
+        console.log(menang)
+      } 
     };
     sumwinloseround();
   }, [countround, playerwin, compwin]);
 
+  
+  useEffect(() => {
+    const sumloseround = () => {
+       if (
+        (countround % 10 === 0) &&
+        (countround >= 0) &&
+        ((compwin > playerwin))
+      ) {
+        setMenang(false)
+        console.log(menang)
+      } 
+    };
+    sumloseround();
+  }, [countround, playerwin, compwin]);
+
+ 
   useEffect(() => {
     const sumround = () => {
-      if (countround % 10 === 0 && countround > 0) {
+      if ((countround % 10 === 0) && (countround > 0)) {
         saveScore();
-        setplayerwin(0);
-        setcompwin(0);
         setRound(round + 1);
       }
     };
-
     sumround();
   }, [countround]);
+
+  
+
+
+  useEffect(() => {
+    const setzerocomp = () => {
+      if ((countround % 10 === 0) && (countround >= 0) && (playerwin >= 0) && (compwin >= 0) && (tie >= 0)) {
+        setplayerwin(0)
+        settie(0)
+        setcompwin(0)
+      }
+    };
+    setzerocomp();
+  }, [countround, playerwin,compwin,tie]);
+
+
 
   useEffect(() => {
     const checkResult = () => {
@@ -193,10 +214,9 @@ function Refac_RPS() {
           break;
       }
     };
-
     checkResult();
     console.log(playerOne + playerTwo);
-  }, [playerTwo, playerOne]);
+  }, [playerOne,playerTwo]);
 
   return (
     <Fragment>
@@ -217,13 +237,17 @@ function Refac_RPS() {
                     </div>
                     <h1>Player</h1>
                     <h5>{playerwin}</h5>
+                    
                   </div>
                 </div>
+
                 <div className="kolom-tengah col-sm-4 d-flex  flex-column py-5 align-self-center ">
                   <div className="d-flex  flex-column py-5 align-self-center ">
                     <h4>VS</h4>
                   </div>
                   <h1>{round + 1}</h1>
+                  <h1>{countround}</h1>
+                  <h5>tie: {tie}</h5>
                 </div>
 
                 <div className="col-sm">
