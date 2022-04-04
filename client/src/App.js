@@ -7,6 +7,7 @@ import Refac_RPS from './Components/RPS__/rps_refactor'
 import Login from './Components/Login_Logout/Login'
 import Register from './Components/Login_Logout/Register'
 import ProfilePage from './Components/ProfilePage/profilepage'
+import Emoji from './Components/emoji_game/App'
 
 /*
   <h1 id='text1'>PLAY TRADITIONAL GAME</h1>
@@ -29,6 +30,8 @@ function App(){
          <Route path="/login" element={<Login/>} />
          <Route path="/register" element={<Register/>} />
          <Route path="/profilepage" element={<ProfilePage/>} />
+         <Route path="/game2" element={<Emoji/>} />
+
         </Routes>
       </BrowserRouter>
     </div>
