@@ -9,5 +9,6 @@ router.get("/logout", userController.logout);
 router.get("/profile", restrict, userController.readProfile);
 router.put("/profile", restrict, userController.updateProfile);
 router.get("/score", restrict, userController.readScore);
+router.get("/isplayed", restrict, userController.isplayed);
 
 module.exports = router;

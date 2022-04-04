@@ -84,4 +84,11 @@ module.exports = {
         res.status(404).json("error", err);
       });
   },
+  isplayed: (req, res) => {
+    UserGameHistory.findOne({
+      where: { userID: req.user.id },
+    }).then((data) => {
+      res.status(200).json(data);
+    });
+  },
 };
