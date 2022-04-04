@@ -6,74 +6,15 @@ import "./styles_rps.css";
 const weapons = ["rock", "paper", "scissor"];
 let token = localStorage.getItem("token");
 
-/*
-function playerchangingRock() {
-    setPlayerOne({playerOne:weapons[0]})
-}
-
-function playerchangingPaper() {
-    setPlayerOne({playerOne:weapons[1]})
-}
-
-function playerchangingScissors() {
-    setPlayerOne({playerOne:weapons[2]})
-}
-*/
-
-/*
-else if ((countround%10 === 0) && (playerwin % 10 < compwin %10)) {
-            setRound(round+1)
-            setRoundWin(roundlose+1)
-
-           } else if ((countround%10 === 0) && (playerwin % 10 === compwin %10)) {
-            setRound(round+1)
-            setRoundWin(roundtie+1)
-
-        }
-
-
-// yang kedua
-
- if((countround%10 === 0)||((playerwin % 10) > (compwin %10)) )  {
-                setRound(round+1)
-                setRoundWin(roundwin+1)
-            }else if ((countround%10 === 0) || ((playerwin % 10) < (compwin %10))) {
-                setRound(round+1)
-                setRoundLose(roundlose+1)
-    
-               } else if ((countround%10 === 0) || (playerwin % 10 === compwin %10)) {
-                setRound(round+1)
-                setRoundTie(roundtie+1)
-            }
-
-
-<h5>player pilih: {playerOne}</h5>
-                                            <h5>comp pilih: {playerTwo}</h5>
-                                            <h5> player menang : {playerwin}</h5>
-                                            <h5> comp menang: {compwin}</h5>
-                                            <h5> tie: {tie}</h5>
-                                            <h5> jumlahsuit: {countround}</h5>
-                                            <h5> player menang {roundwin} ronde </h5>
-                                            <h5> player kalah {roundlose} ronde </h5>
-                                            <h5> ronde sekarang : { round+ 1}</h5>
-
-        
-
-
-*/
 function Refac_RPS() {
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
-  const [hover, setHover] = useState(true);
-  const [hovercls, setHover_CLS] = useState();
   const [playerwin, setplayerwin] = useState(0);
   const [compwin, setcompwin] = useState(0);
   const [tie, settie] = useState(0);
   const [round, setRound] = useState(0);
   const [countround, setCountRound] = useState(0);
   const [roundwin, setRoundWin] = useState(0);
-  const [roundlose, setRoundLose] = useState(0);
-  const [roundtie, setRoundTie] = useState(0);
   const [menang, setMenang] = useState(true);
 
   const [score, setScore] = useState(0);
@@ -82,7 +23,7 @@ function Refac_RPS() {
   const saveScore = async () => {
     // e.preventDefault();
     try {
-      const body = { playerwin, menang };
+      const body = { score, win };
       const response = await fetch("http://localhost:5000/api/suit/score/1", {
         method: "POST",
         headers: {
@@ -137,10 +78,10 @@ function Refac_RPS() {
     compchange();
   }
 
-  function DapatScoreMenang() {
+  async function DapatScoreMenang() {
     console.log("playerwin", playerwin, "menang", menang);
-    setScore(playerwin);
-    setWin(menang);
+    await setScore(playerwin);
+    await setWin(menang);
     console.log("score", score, "win", win);
   }
 
@@ -165,11 +106,9 @@ function Refac_RPS() {
   }, [countround, playerwin, compwin]);
 
   useEffect(() => {
-    const sumround = () => {
+    const sumround = async () => {
       if (countround % 10 === 0 && countround > 0) {
-        DapatScoreMenang();
-        DapatScoreMenang();
-        saveScore();
+        await DapatScoreMenang();
         setRound(round + 1);
       }
     };
@@ -299,7 +238,12 @@ function Refac_RPS() {
                     >
                       Scissors
                     </button>
-                    <button className="weaponBtn" onClick={DapatScoreMenang}>
+                    <button
+                      className="weaponBtn"
+                      onClick={() => {
+                        saveScore();
+                      }}
+                    >
                       reset
                     </button>
                   </div>
