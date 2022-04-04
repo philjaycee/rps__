@@ -76,13 +76,13 @@ function Refac_RPS() {
   const [roundtie, setRoundTie] = useState(0);
   const [menang, setMenang] = useState(true);
 
-  const [score, setScore] = useState("12");
-  const [win, setWin] = useState("true");
+  const [score, setScore] = useState(0);
+  const [win, setWin] = useState(true);
 
   const saveScore = async () => {
     // e.preventDefault();
     try {
-      const body = { score, win };
+      const body = { playerwin, menang };
       const response = await fetch("http://localhost:5000/api/suit/score/1", {
         method: "POST",
         headers: {
@@ -94,7 +94,7 @@ function Refac_RPS() {
       console.log("response", response);
       if (response.ok) {
         const json = await response.json();
-        console.log(json);
+        console.log("json", json);
       }
     } catch (err) {
       console.error("err2", err.message);
@@ -138,39 +138,37 @@ function Refac_RPS() {
   }
 
   function DapatScoreMenang() {
+    console.log("playerwin", playerwin, "menang", menang);
     setScore(playerwin);
     setWin(menang);
+    console.log("score", score, "win", win);
   }
 
   useEffect(() => {
     const sumwinloseround = () => {
-      if ((countround % 10 === 0) && (countround >= 0) && (playerwin > compwin)) {
+      if (countround % 10 === 0 && countround >= 0 && playerwin > compwin) {
         setMenang(true);
-        console.log(menang)
-      } 
+        console.log(menang);
+      }
     };
     sumwinloseround();
   }, [countround, playerwin, compwin]);
 
-  
   useEffect(() => {
     const sumloseround = () => {
-       if (
-        (countround % 10 === 0) &&
-        (countround >= 0) &&
-        ((compwin > playerwin))
-      ) {
-        setMenang(false)
-        console.log(menang)
-      } 
+      if (countround % 10 === 0 && countround >= 0 && compwin > playerwin) {
+        setMenang(false);
+        console.log(menang);
+      }
     };
     sumloseround();
   }, [countround, playerwin, compwin]);
 
- 
   useEffect(() => {
     const sumround = () => {
-      if ((countround % 10 === 0) && (countround > 0)) {
+      if (countround % 10 === 0 && countround > 0) {
+        DapatScoreMenang();
+        DapatScoreMenang();
         saveScore();
         setRound(round + 1);
       }
@@ -178,21 +176,22 @@ function Refac_RPS() {
     sumround();
   }, [countround]);
 
-  
-
-
   useEffect(() => {
     const setzerocomp = () => {
-      if ((countround % 10 === 0) && (countround >= 0) && (playerwin >= 0) && (compwin >= 0) && (tie >= 0)) {
-        setplayerwin(0)
-        settie(0)
-        setcompwin(0)
+      if (
+        countround % 10 === 0 &&
+        countround >= 0 &&
+        playerwin >= 0 &&
+        compwin >= 0 &&
+        tie >= 0
+      ) {
+        // setplayerwin(0);
+        // settie(0);
+        // setcompwin(0);
       }
     };
     setzerocomp();
-  }, [countround, playerwin,compwin,tie]);
-
-
+  }, [countround, playerwin, compwin, tie]);
 
   useEffect(() => {
     const checkResult = () => {
@@ -216,7 +215,7 @@ function Refac_RPS() {
     };
     checkResult();
     console.log(playerOne + playerTwo);
-  }, [playerOne,playerTwo]);
+  }, [playerOne, playerTwo]);
 
   return (
     <Fragment>
@@ -237,7 +236,6 @@ function Refac_RPS() {
                     </div>
                     <h1>Player</h1>
                     <h5>{playerwin}</h5>
-                    
                   </div>
                 </div>
 
@@ -290,25 +288,22 @@ function Refac_RPS() {
                       {menang ? <h5>Menang</h5> : <h5>Kalah</h5>}
                     </h5>
                     <button className="weaponBtn" onClick={playerchangingRock}>
-                      {" "}
-                      Rock{" "}
+                      Rock
                     </button>
                     <button className="weaponBtn" onClick={playerchangingPaper}>
-                      {" "}
-                      Paper{" "}
+                      Paper
                     </button>
                     <button
                       className="weaponBtn"
                       onClick={playerchangingScissors}
                     >
-                      {" "}
-                      Scissors{" "}
+                      Scissors
                     </button>
-                    <button className="weaponBtn" onClick={saveScore}>
+                    <button className="weaponBtn" onClick={DapatScoreMenang}>
                       reset
                     </button>
                   </div>
-                )}{" "}
+                )}
               </h5>
             </div>
           </div>
