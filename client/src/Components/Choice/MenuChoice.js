@@ -17,7 +17,7 @@ export const MenuItems=[
         width: 100,
         height: 100,
         posisi: 'kedua',
-         url : '#'
+         url : '/game2'
     },
     {
         className:'col-lg px-2',
