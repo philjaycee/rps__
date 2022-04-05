@@ -7,6 +7,10 @@ const weapons = ["rock", "paper", "scissor"];
 let token = localStorage.getItem("token");
 
 function Refac_RPS() {
+  // const [players, setPlayer]= useState({
+  //   playerOne: "",
+  //   playerTwo: "",
+  // })
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
   const [playerwin, setplayerwin] = useState(0);
@@ -78,10 +82,10 @@ function Refac_RPS() {
     compchange();
   }
 
-  async function DapatScoreMenang() {
-    console.log("playerwin", playerwin, "menang", menang);
-    await setScore(playerwin);
-    await setWin(menang);
+  function DapatScoreMenang() {
+    console.log("playerwin1", playerwin, "menang1", menang);
+    setScore(playerwin);
+    setWin(menang);
     console.log("score", score, "win", win);
   }
 
@@ -133,7 +137,8 @@ function Refac_RPS() {
   }, [countround, playerwin, compwin, tie]);
 
   useEffect(() => {
-    const checkResult = () => {
+    const checkResult = async () => {
+      // eslint-disable-next-line default-case
       switch (playerOne + playerTwo) {
         case "scissorpaper":
         case "rockscissor":
@@ -152,7 +157,7 @@ function Refac_RPS() {
           break;
       }
     };
-    checkResult();
+    setTimeout(checkResult(), 5000);
     console.log(playerOne + playerTwo);
   }, [playerOne, playerTwo]);
 
@@ -161,7 +166,6 @@ function Refac_RPS() {
       <Navbar_ />
       <div className="background py-5">
         <h1 className="d-flex flex-column align-self-center">
-          {" "}
           Rock Paper Scissors
         </h1>
         <div className="container py-2 mx-5">
@@ -205,25 +209,22 @@ function Refac_RPS() {
                 {bawahsepuluh() ? (
                   <div className="">
                     <button className="weaponBtn" onClick={playerchangingRock}>
-                      {" "}
-                      Rock{" "}
+                      Rock
                     </button>
                     <button className="weaponBtn" onClick={playerchangingPaper}>
-                      {" "}
-                      Paper{" "}
+                      Paper
                     </button>
                     <button
                       className="weaponBtn"
                       onClick={playerchangingScissors}
                     >
-                      {" "}
-                      Scissors{" "}
+                      Scissors
                     </button>
                   </div>
                 ) : (
                   <div className="">
                     <h5>
-                      Ronde {round} untuk Player :{" "}
+                      Ronde {round} untuk Player :
                       {menang ? <h5>Menang</h5> : <h5>Kalah</h5>}
                     </h5>
                     <button className="weaponBtn" onClick={playerchangingRock}>
@@ -237,6 +238,14 @@ function Refac_RPS() {
                       onClick={playerchangingScissors}
                     >
                       Scissors
+                    </button>
+                    <button
+                      className="weaponBtn"
+                      onClick={() => {
+                        DapatScoreMenang();
+                      }}
+                    >
+                      update
                     </button>
                     <button
                       className="weaponBtn"
