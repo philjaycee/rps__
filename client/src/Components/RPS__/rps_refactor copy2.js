@@ -11,15 +11,11 @@ function Refac_RPS() {
   //   playerOne: "",
   //   playerTwo: "",
   // })
-  const [histories, setHistories] = useState({
-    player: 0,
-    com: 0,
-    tie: 0,
-    win: false,
-  });
-  const { player, com, tie } = histories;
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
+  const [playerwin, setplayerwin] = useState(0);
+  const [compwin, setcompwin] = useState(0);
+  const [tie, settie] = useState(0);
   const [round, setRound] = useState(0);
   const [countround, setCountRound] = useState(0);
   const [roundwin, setRoundWin] = useState(0);
@@ -29,10 +25,9 @@ function Refac_RPS() {
   const [win, setWin] = useState(true);
 
   const saveScore = async () => {
-    const histori = await DapatScoreMenang();
-    console.log("histori", histori);
+    // e.preventDefault();
     try {
-      const body = { score: histori.player, win: histori.win };
+      const body = { score, win };
       const response = await fetch("http://localhost:5000/api/suit/score/1", {
         method: "POST",
         headers: {
@@ -88,35 +83,31 @@ function Refac_RPS() {
   }
 
   function DapatScoreMenang() {
-    if (player + com + tie === 10) {
-      setScore(player);
-      setHistories((prevState) => ({ ...prevState, win: menang }));
-      console.log("player", player, "menang", menang);
-      console.log("score1", score, "win1", win);
-    }
-    console.log(histories);
-    return histories;
+    console.log("playerwin1", playerwin, "menang1", menang);
+    setScore(playerwin);
+    setWin(menang);
+    console.log("score", score, "win", win);
   }
 
   useEffect(() => {
     const sumwinloseround = () => {
-      if (countround % 10 === 0 && countround >= 0 && player > com) {
+      if (countround % 10 === 0 && countround >= 0 && playerwin > compwin) {
         setMenang(true);
         console.log(menang);
       }
     };
     sumwinloseround();
-  }, [countround, player, com]);
+  }, [countround, playerwin, compwin]);
 
   useEffect(() => {
     const sumloseround = () => {
-      if (countround % 10 === 0 && countround >= 0 && com > player) {
+      if (countround % 10 === 0 && countround >= 0 && compwin > playerwin) {
         setMenang(false);
         console.log(menang);
       }
     };
     sumloseround();
-  }, [countround, player, com]);
+  }, [countround, playerwin, compwin]);
 
   useEffect(() => {
     const sumround = async () => {
@@ -133,8 +124,8 @@ function Refac_RPS() {
       if (
         countround % 10 === 0 &&
         countround >= 0 &&
-        player >= 0 &&
-        com >= 0 &&
+        playerwin >= 0 &&
+        compwin >= 0 &&
         tie >= 0
       ) {
         // setplayerwin(0);
@@ -143,7 +134,7 @@ function Refac_RPS() {
       }
     };
     setzerocomp();
-  }, [countround, player, com, tie]);
+  }, [countround, playerwin, compwin, tie]);
 
   useEffect(() => {
     const checkResult = async () => {
@@ -152,30 +143,21 @@ function Refac_RPS() {
         case "scissorpaper":
         case "rockscissor":
         case "paperrock":
-          setHistories((prevState) => ({
-            ...prevState,
-            player: prevState.player + 1,
-          }));
+          setplayerwin(playerwin + 1);
           break;
         case "paperscissor":
         case "scissorrock":
         case "rockpaper":
-          setHistories((prevState) => ({
-            ...prevState,
-            com: prevState.com + 1,
-          }));
+          setcompwin(compwin + 1);
           break;
         case "rockrock":
         case "paperpaper":
         case "scissorscissor":
-          setHistories((prevState) => ({
-            ...prevState,
-            tie: prevState.tie + 1,
-          }));
+          settie(tie + 1);
           break;
       }
     };
-    checkResult();
+    setTimeout(checkResult(), 5000);
     console.log(playerOne + playerTwo);
   }, [playerOne, playerTwo]);
 
@@ -196,7 +178,7 @@ function Refac_RPS() {
                       <Player weapons={playerOne} />
                     </div>
                     <h1>Player</h1>
-                    <h5>{player}</h5>
+                    <h5>{playerwin}</h5>
                   </div>
                 </div>
 
@@ -214,7 +196,7 @@ function Refac_RPS() {
                     <Player weapons={playerTwo} />
                   </div>
                   <h1>Comp</h1>
-                  <h5>{com}</h5>
+                  <h5>{compwin}</h5>
                 </div>
               </div>
             </div>
@@ -271,7 +253,7 @@ function Refac_RPS() {
                         saveScore();
                       }}
                     >
-                      save
+                      reset
                     </button>
                   </div>
                 )}
